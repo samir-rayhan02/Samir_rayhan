@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Samir Rayhan | Web Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0c0c13;--panel:#15151f;--line:#262636;--txt:#ededf6;--mut:#9b9bb2;--v:#8b7bff;--y:#ffc83d}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--y);outline-offset:3px}
+header{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 22px;background:#0c0c13ee;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.logo{font-weight:800;font-size:1.15rem}
+nav{display:flex;gap:22px}
+nav a{color:var(--mut);font-size:.95rem;transition:color .2s}
+nav a:hover{color:var(--y)}
+.burger{display:none;background:none;border:0;color:var(--txt);font-size:1.7rem;cursor:pointer}
+@media(max-width:680px){.burger{display:block}nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line)}nav.open{display:flex}nav a{padding:14px 22px;border-top:1px solid var(--line)}}
+section{padding:72px 22px;max-width:1000px;margin:auto}
+h2{font-size:1.8rem;font-weight:800;margin-bottom:26px}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;min-height:82vh;padding-top:48px}
+.status{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--line);border-radius:30px;color:var(--mut);font-size:.85rem}
+.status i{width:8px;height:8px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 0 #3ddc8477;animation:pulse 2s infinite}
+.hero h1{font-size:clamp(2.8rem,9vw,5.2rem);line-height:1;font-weight:800;margin:18px 0 14px;letter-spacing:-.03em}
+.hero p{color:var(--mut);max-width:30ch;font-size:1.1rem}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn{padding:12px 26px;border-radius:12px;font-weight:600;border:1px solid var(--line);transition:transform .2s,background .2s}
+.btn.main{background:var(--y);color:#17130a;border-color:var(--y)}
+.btn:hover{transform:translateY(-3px)}
+.photo{position:relative;justify-self:center;width:min(100%,340px)}
+.photo::before{content:"";position:absolute;inset:18px -14px -14px 18px;background:var(--y);border-radius:140px 140px 24px 24px}
+.photo img{position:relative;display:block;width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:140px 140px 24px 24px;background:var(--panel)}
+.hero>*{animation:in .8s ease both}
+.hero>.photo{animation-delay:.2s}
+@media(max-width:760px){.hero{grid-template-columns:1fr;text-align:left}.photo{order:-1;width:min(70%,260px);justify-self:start}}
+
+/* About */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.about p{color:var(--mut);margin-bottom:14px}
+.facts div{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
+.facts span{color:var(--mut)}
+@media(max-width:700px){.about{grid-template-columns:1fr}}
+
+/* Services */
+.svc{border-top:1px solid var(--line)}
+.svc div{display:flex;gap:20px;justify-content:space-between;padding:22px 0;border-bottom:1px solid var(--line)}
+.svc h3{font-size:1.2rem}
+.svc p{color:var(--mut);max-width:34ch;text-align:right}
+@media(max-width:600px){.svc div{flex-direction:column;gap:6px}.svc p{text-align:left}}
+
+/* Skills */
+.bars{max-width:560px}
+.sk{margin-bottom:18px}
+.sk p{display:flex;justify-content:space-between;margin-bottom:6px}
+.sk b{color:var(--y)}
+.bar{height:8px;background:var(--panel);border-radius:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--v),var(--y));border-radius:8px;transition:width 1.4s ease}
+.bar.go i{width:var(--w)}
+
+/* Work */
+.work{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.proj{display:block;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--panel);transition:border-color .2s,transform .2s}
+.proj:hover{border-color:var(--v);transform:translateY(-5px)}
+.proj .thumb{height:150px;display:flex;align-items:center;justify-content:center;font-size:2.6rem;background:linear-gradient(135deg,#241e4d,#15151f)}
+.proj div+div{padding:16px 18px}
+.proj small{color:var(--mut)}
+
+/* Contact */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.contact p{color:var(--mut);margin-bottom:18px}
+form{display:grid;gap:12px}
+input,textarea{width:100%;padding:13px 14px;background:var(--panel);color:var(--txt);border:1px solid var(--line);border-radius:12px;font:inherit}
+input:focus,textarea:focus{outline:none;border-color:var(--v)}
+textarea{min-height:110px;resize:vertical}
+button.btn{cursor:pointer;font:inherit;font-weight:600}
+.social{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.social a{padding:9px 18px;border:1px solid var(--line);border-radius:30px;color:var(--mut);transition:.2s}
+.social a:hover{color:var(--y);border-color:var(--y)}
+@media(max-width:700px){.contact{grid-template-columns:1fr}}
+footer{text-align:center;padding:28px;color:var(--mut);border-top:1px solid var(--line);font-size:.9rem}
+
+@keyframes in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes pulse{70%{box-shadow:0 0 0 8px #3ddc8400}100%{box-shadow:0 0 0 0 #3ddc8400}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#top">Samir Rayhan</a>
+  <button class="burger" id="burger" aria-label="Menu">&#9776;</button>
+  <nav id="nav">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#skills">Skills</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div>
+    <span class="status"><i></i>Taking new projects</span>
+    <h1>Samir<br>Rayhan</h1>
+    <p>I build fast, clean websites for small businesses.</p>
+    <div class="btns">
+      <a class="btn main" href="#contact">Hire me</a>
+      <a class="btn" href="#work">See my work</a>
+    </div>
+  </div>
+  <div class="photo">
+    <img src="photo.jpg.JPG" alt="Samir Rayhan">
+  </div>
+</section>
+
+<section id="about">
+  <h2>About me</h2>
+  <div class="about">
+    <div>
+      <p>Ami Samir Rayhan. Ami website banate ar notun kichu shikhte bhalobashi.</p>
+      <p>Cafe, coaching, salon ba choto dokan, apnar business er jonno phone e sundor dekhabe emon website baniye dei.</p>
+    </div>
+    <div class="facts">
+      <div><span>Name</span><b>Samir Rayhan</b></div>
+      <div><span>Role</span><b>Web Developer</b></div>
+      <div><span>Works with</span><b>HTML, CSS, JavaScript</b></div>
+      <div><span>Status</span><b>Available</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <h2>What I make</h2>
+  <div class="svc">
+    <div><h3>Business website</h3><p>Menu, address, phone and WhatsApp in one page.</p></div>
+    <div><h3>Portfolio site</h3><p>Show your work and let clients contact you.</p></div>
+    <div><h3>Site updates</h3><p>Send me photos and news, I add them for you every month.</p></div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="bars">
+    <div class="sk"><p>HTML <b>90%</b></p><div class="bar"><i style="--w:90%"></i></div></div>
+    <div class="sk"><p>CSS <b>80%</b></p><div class="bar"><i style="--w:80%"></i></div></div>
+    <div class="sk"><p>JavaScript <b>70%</b></p><div class="bar"><i style="--w:70%"></i></div></div>
+  </div>
+</section>
+
+<section id="work">
+  <h2>Work</h2>
+  <div class="work">
+    <a class="proj" href="https://samir-rayhan02.github.io/Demo-cafe/" target="_blank" rel="noopener">
+      <div class="thumb">&#9749;</div>
+      <div><b>Cafe website</b><br><small>Menu, location, WhatsApp order</small></div>
+    </a>
+    <a class="proj" href="#">
+      <div class="thumb">&#128187;</div>
+      <div><b>Infinity Dev</b><br><small>Online code editor</small></div>
+    </a>
+    <a class="proj" href="#contact">
+      <div class="thumb">&#10133;</div>
+      <div><b>Your business</b><br><small>Your project could be here</small></div>
+    </a>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Let's talk</h2>
+  <div class="contact">
+    <div>
+      <p>Tell me about your business. I reply on WhatsApp or email.</p>
+      <div class="btns" style="margin:0 0 22px">
+        <a class="btn main" href="https://wa.me/8801XXXXXXXXX" target="_blank" rel="noopener">WhatsApp me</a>
+      </div>
+      <div class="social">
+        <a href="https://github.com/samir-rayhan02" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://facebook.com/TOMAR-ID" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://instagram.com/TOMAR-ID" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://youtube.com/@TOMAR-CHANNEL" target="_blank" rel="noopener">YouTube</a>
+      </div>
+    </div>
+    <form id="form">
+      <input id="n" placeholder="Your name" required>
+      <textarea id="m" placeholder="What do you need?" required></textarea>
+      <button class="btn main" type="submit">Send by email</button>
+    </form>
+  </div>
+</section>
+
+<footer>&copy; 2026 Samir Rayhan</footer>
+
+<script>
+var nav=document.getElementById("nav");
+document.getElementById("burger").onclick=function(){nav.classList.toggle("open")};
+nav.onclick=function(){nav.classList.remove("open")};
+
+var io=new IntersectionObserver(function(a){a.forEach(function(e){if(e.isIntersecting)e.target.classList.add("go")})},{threshold:.4});
+document.querySelectorAll(".bar").forEach(function(b){io.observe(b)});
+
+document.getElementById("form").onsubmit=function(e){
+  e.preventDefault();
+  var n=document.getElementById("n").value,m=document.getElementById("m").value;
+  location.href="mailto:YOUR@EMAIL.COM?subject="+encodeURIComponent("Website enquiry from "+n)+"&body="+encodeURIComponent(m);
+};
+</script>
+</body>
+</html>

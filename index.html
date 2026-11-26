@@ -208,10 +208,11 @@ document.getElementById("form").onsubmit=function(e){
   var n=document.getElementById("n").value,m=document.getElementById("m").value;
   location.href="mailto:YOUR@EMAIL.COM?subject="+encodeURIComponent("Website enquiry from "+n)+"&body="+encodeURIComponent(m);
 };
-</script>var SHEET_ID="1-_FcaAahXXXSnuHC3OraRyDKS7-giRfq_pjI2yfKx30";
+var SHEET_ID="1-_FcaAahXXXSnuHC3OraRyDKS7-giRfq_pjI2yfKx30";
 fetch("https://docs.google.com/spreadsheets/d/"+SHEET_ID+"/gviz/tq?tqx=out:csv").then(function(r){return r.text()}).then(function(t){
   var m=t.match(/\/d\/([\w-]{20,})/)||t.match(/[?&]id=([\w-]{20,})/);
   if(m)document.querySelector(".photo img").src="https://drive.google.com/thumbnail?id="+m[1]+"&sz=w1000";
 }).catch(function(){});
+</script> 
 </body>
 </html>
